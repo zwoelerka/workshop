@@ -1,0 +1,18 @@
+body {
+	width: 70%;
+	margin: auto;
+	font-family: 'Nunito', sans-serif;
+}
+.technique {
+	padding: 15px;
+}
+.technique1 {
+	background-color: rgba(180, 180, 180, 0.5);
+}
+.technique2 {
+}
+
+.progressBar  {
+	background-color: red; 
+	height: 10px;
+}
