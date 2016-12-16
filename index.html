@@ -8,74 +8,76 @@
 	</head>
 	<body ng-controller="workshopController">
 		<header>
-			<h1>User Interface Design – Useful Techniques</h1> {{step}}
+			<h1>User Interface Design – Useful Techniques</h1>
 		</header>
 		<div class="navigationButtons">
 			<input type="button" value="prev" ng-click="decrementStep()" />
 			<input type="button" value="next" ng-click="incrementStep()" />
 			<div class="progressBar" style="width: {{progress}}%" ></div>
 		</div>
-		<div class="technique technique1" ng-show="step === 1">
-			<h3>1. Specialized controls</h3>
-			<p>Use the right interface controls when needed. Different situations can be handled in different ways, and certain controls are better at their intended task than others. For example, use date time picker or progress bar when appropriate.</p>
-		</div>
+		<div class="sidebar">
+			<div ng-repeat="technique in techniques" ng-class="{'activeTechnique': step == $index+1}">{{$index + 1}}. {{technique.name}}</div>
+			
 
-		<div class="technique technique2" ng-show="step === 2">
-			<h3>2. Disable pressed buttons</h3>
-			<input type="submit" value="Enabled" onclick="this.disabled=true; this.value='Disabled'" />
 		</div>
+		<div class="content">
+			<div class="technique technique1">
+				<h3>{{techniques[step-1].index}}. {{techniques[step-1].name}}</h3>
+				<p>Use the right interface controls when needed. Different situations can be handled in different ways, and certain controls are better at their intended task than others. For example, use date time picker or progress bar when appropriate.</p>
+			</div>
 
-		<div class="technique technique3" ng-show="step === 3">
-			<h3>3. Shadows around modal windows</h3>
+			<!--<div class="technique technique2" ng-show="step === 2">
+				<h3>2. Disable pressed buttons</h3>
+				<input type="submit" value="Enabled" onclick="this.disabled=true; this.value='Disabled'" />
+			</div>
+
+			<div class="technique technique3" ng-show="step === 3">
+				<h3>3. Shadows around modal windows</h3>
+			</div>
+
+			<div class="technique technique5" ng-show="step === 5">
+				<h3>5. Instructions on empty states</h3>
+			</div>
+
+			<div class="technique technique6" ng-show="step === 6">
+				<h3>6. Pressed button states</h3>
+			</div>
+
+			<div class="technique technique7" ng-show="step === 7">
+				<h3>7. Sign up link in the log in page</h3>
+			</div>
+
+			<div class="technique technique8" ng-show="step === 8">
+				<h3>8. Context sensitive navigation</h3>
+			</div>
+
+			<div class="technique technique9" ng-show="step === 9">
+				<h3>9. More emphasis on key functions</h3>
+			</div>
+
+			<div class="technique technique10" ng-show="step === 10">
+				<h3>10. Embed video</h3>
+			</div>
+
+			<div class="technique technique11" ng-show="step === 11">
+				<h3>11. Highlight important changes</h3>
+			</div>
+
+			<div class="technique technique12" ng-show="step === 12">
+				<h3>12. Enable keyboard functions</h3>
+			</div>
+
+			<div class="technique technique13" ng-show="step === 13">
+				<h3>13. Display help messages</h3>
+			</div>
+
+			<div class="technique technique14" ng-show="step === 14">
+				<h3>14. Validation messages</h3>
+			</div>
+
+			<div class="technique technique15" ng-show="step === 15">
+				<h3>15. Tabbed navigation</h3>
+			</div>-->
 		</div>
-
-		<div class="technique technique4" ng-show="step === 4">
-			<h3>4. Shadows around modal windows</h3>
-		</div>
-
-		<div class="technique technique5" ng-show="step === 5">
-			<h3>5. Instructions on empty states</h3>
-		</div>
-
-		<div class="technique technique6" ng-show="step === 6">
-			<h3>6. Pressed button states</h3>
-		</div>
-
-		<div class="technique technique7" ng-show="step === 7">
-			<h3>7. Sign up link in the log in page</h3>
-		</div>
-
-		<div class="technique technique8" ng-show="step === 8">
-			<h3>8. Context sensitive navigation</h3>
-		</div>
-
-		<div class="technique technique9" ng-show="step === 9">
-			<h3>9. More emphasis on key functions</h3>
-		</div>
-
-		<div class="technique technique10" ng-show="step === 10">
-			<h3>10. Embed video</h3>
-		</div>
-
-		<div class="technique technique11" ng-show="step === 11">
-			<h3>11. Highlight important changes</h3>
-		</div>
-
-		<div class="technique technique12" ng-show="step === 12">
-			<h3>12. Enable keyboard functions</h3>
-		</div>
-
-		<div class="technique technique13" ng-show="step === 13">
-			<h3>13. Display help messages</h3>
-		</div>
-
-		<div class="technique technique14" ng-show="step === 14">
-			<h3>14. Validation messages</h3>
-		</div>
-
-		<div class="technique technique15" ng-show="step === 15">
-			<h3>15. Tabbed navigation</h3>
-		</div>
-
 	</body>
 </html>

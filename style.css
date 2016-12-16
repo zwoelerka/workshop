@@ -2,6 +2,22 @@ body {
 	width: 70%;
 	margin: auto;
 	font-family: 'Nunito', sans-serif;
+	position: relative;
+	border: 1px solid red;
+
+}
+.content {
+	width: 80%;
+	border: 1px solid blue;
+	float: right;
+	box-sizing: border-box;
+}
+.sidebar {
+	width: 20%;
+	border: 1px solid green;
+	float: left;
+	box-sizing: border-box;
+
 }
 .technique {
 	padding: 15px;
@@ -15,4 +31,7 @@ body {
 .progressBar  {
 	background-color: red; 
 	height: 10px;
+}
+.activeTechnique {
+	color: red;
 }
