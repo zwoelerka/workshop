@@ -1,8 +1,8 @@
-var workshopApp = angular.module('workshopApp', []);
+var workshopApp = angular.module('workshopApp', ['ui.bootstrap']);
 
 workshopApp.controller('workshopController', function workshopController($scope) {
     $scope.step = 1;
-    $scope.progress = 6.67;
+    $scope.progress = 8.3325;
     $scope.techniques = [
     	{
     		index: 1,
@@ -30,34 +30,26 @@ workshopApp.controller('workshopController', function workshopController($scope)
     	},
     	{
     		index: 7,
-    		name: 'Context sensitive navigation'
-    	},
-    	{
-    		index: 8,
     		name: 'More emphasis on key functions'
     	},
     	{
-    		index: 9,
+    		index: 8,
     		name: 'Embed video'
     	},
     	{
-    		index: 10,
+    		index: 9,
     		name: 'Highlight important changes'
     	},
     	{
-    		index: 11,
+    		index: 10,
     		name: 'Enable keyboard functions'
     	},
     	{
-    		index: 12,
-    		name: 'Display help messages'
-    	},
-    	{
-    		index: 13,
+    		index: 11,
     		name: 'Validation messages'
     	},
     	{
-    		index: 14,
+    		index: 12,
     		name: 'Tabbed navigation'
     	}
     	
@@ -66,22 +58,22 @@ workshopApp.controller('workshopController', function workshopController($scope)
 
     $scope.loginSubmited = false;
 	$scope.incrementStep = function () {
-		if ($scope.step < 15) {
+		if ($scope.step < $scope.techniques.length) {
 			$scope.step++;
-			$scope.progress = $scope.step * 6.67;
+			$scope.progress = $scope.step * 8.3325;
 		}
 	 }
 
 	$scope.decrementStep = function () {
 		if ($scope.step > 1) {
 			$scope.step--;
-			$scope.progress = $scope.step * 6.67;
+			$scope.progress = $scope.step * 8.3325;
 		}
 	}
 
 	$scope.selectTechnique = function (x) {
 		$scope.step = x;
-		$scope.progress = $scope.step * 6.67;
+		$scope.progress = $scope.step * 8.3325;
 	}
 
 	// step 1
@@ -136,11 +128,13 @@ $scope.today = function() {
   };
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[0];
+  $scope.format = {
+  	f: 'dd-MMMM-yyyy'
+  };
   $scope.altInputFormats = ['M!/d!/yyyy'];
 
   $scope.popup1 = {
-    opened: true
+    opened: false
   };
 
   $scope.popup2 = {
@@ -207,12 +201,12 @@ $scope.today = function() {
 			$scope.todoList.push({item: $scope.addNewTodoItem.newItem});
 			$scope.addNewTodoItem.newItem = '';
 			$scope.showAddNewItemValidation = false;
+			$scope.updateChanges();
 		}
-			console.log($scope.addNewTodoItem.newItem);
 
 	}
 
-	//step 14
+	//step 12
 	$scope.tabbedNavSelected = 1;
 	$scope.tabbedNavLink = function (data) {
 		$scope.tabbedNavSelected = data;
@@ -234,6 +228,9 @@ $scope.today = function() {
            $scope.incrementStep();   
        }
     }
+
+  
+
 
 });
 
