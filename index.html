@@ -1,83 +1,203 @@
 <!DOCTYPE html>
 <html ng-app="workshopApp">
-	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="angular.min.js"></script>
-		<script src="app.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-	</head>
-	<body ng-controller="workshopController">
-		<header>
-			<h1>User Interface Design – Useful Techniques</h1>
-		</header>
-		<div class="navigationButtons">
-			<input type="button" value="prev" ng-click="decrementStep()" />
-			<input type="button" value="next" ng-click="incrementStep()" />
-			<div class="progressBar" style="width: {{progress}}%" ></div>
-		</div>
-		<div class="sidebar">
-			<div ng-repeat="technique in techniques" ng-class="{'activeTechnique': step == $index+1}">{{$index + 1}}. {{technique.name}}</div>
-			
 
-		</div>
-		<div class="content">
-			<div class="technique technique1">
-				<h3>{{techniques[step-1].index}}. {{techniques[step-1].name}}</h3>
-				<p>Use the right interface controls when needed. Different situations can be handled in different ways, and certain controls are better at their intended task than others. For example, use date time picker or progress bar when appropriate.</p>
-			</div>
+<head>
+    <title>UI Design - Useful Techniques</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
 
-			<!--<div class="technique technique2" ng-show="step === 2">
-				<h3>2. Disable pressed buttons</h3>
-				<input type="submit" value="Enabled" onclick="this.disabled=true; this.value='Disabled'" />
-			</div>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
 
-			<div class="technique technique3" ng-show="step === 3">
-				<h3>3. Shadows around modal windows</h3>
-			</div>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-			<div class="technique technique5" ng-show="step === 5">
-				<h3>5. Instructions on empty states</h3>
-			</div>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</head>
 
-			<div class="technique technique6" ng-show="step === 6">
-				<h3>6. Pressed button states</h3>
-			</div>
 
-			<div class="technique technique7" ng-show="step === 7">
-				<h3>7. Sign up link in the log in page</h3>
-			</div>
+<body ng-controller="workshopController" ng-keydown="keyPress($event);">
 
-			<div class="technique technique8" ng-show="step === 8">
-				<h3>8. Context sensitive navigation</h3>
-			</div>
+    <div class="container">
+        <header>
+            <h1>User Interface Design – Useful Techniques</h1>
+        </header>
+        <div class="content">
+            <!--<div class="progressBar" style="width: {{progress}}%"></div>-->
 
-			<div class="technique technique9" ng-show="step === 9">
-				<h3>9. More emphasis on key functions</h3>
-			</div>
+            <div class="technique technique{{step}}" }>
+                <h3>{{techniques[step-1].index}}. {{techniques[step-1].name}}</h3>
 
-			<div class="technique technique10" ng-show="step === 10">
-				<h3>10. Embed video</h3>
-			</div>
+                <div ng-if="step==1">
+                    <p>Use the right interface controls when needed. Different situations can be handled in different ways, and certain controls are better at their intended task than others. For example, use date time picker or progress bar when appropriate.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="'dd-MMMM-yyyy'" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+					            		<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+					          		</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="technique technique11" ng-show="step === 11">
-				<h3>11. Highlight important changes</h3>
-			</div>
+                <div ng-if="step == 2 || step == 8">
+                    <h5>Log in</h5>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" ng-disabled="loginSubmited">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd">Password:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-disabled="loginSubmited">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" ng-disabled="loginSubmited"> Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" ng-click="SubmitLogin()" ng-disabled="loginSubmited">Submit</button>
+                                <button class="btn btn-less-important" ng-disabled="loginSubmited">Cancel</button>
 
-			<div class="technique technique12" ng-show="step === 12">
-				<h3>12. Enable keyboard functions</h3>
-			</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-			<div class="technique technique13" ng-show="step === 13">
-				<h3>13. Display help messages</h3>
-			</div>
+                <div ng-if="step == 3">
+                    <div>
+                        <p>To make this window stand out better, you can darken the content below it. The darker background will block out all the noise of the content behind the box and make the modal window the center of attention. This is very similar to using shadows around the window but is even more powerful in directing focus. The darker background also indicates that interaction with the content beneath is disabled and that the user should instead interact with the modal window.</p>
+                        <h2>Modal Example</h2>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-			<div class="technique technique14" ng-show="step === 14">
-				<h3>14. Validation messages</h3>
-			</div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
 
-			<div class="technique technique15" ng-show="step === 15">
-				<h3>15. Tabbed navigation</h3>
-			</div>-->
-		</div>
-	</body>
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Header</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div ng-if="step == 4">
+                    <p>
+                        When you’re designing a Web application, it’s important not only to test it with sample data, but to ensure that it looks good and is helpful when there is nothing there yet. You should design the empty states. When there is no information for a page or query yet, a helpful message telling the user how to start could go in that empty space.
+                    </p>
+                    <!-- TODO: image from clients table empty state -->
+                </div>
+
+                <div ng-if="step == 5">
+                    <p>Giving instant feedback to the user that something is pressed will make the application feel more responsive and bring the experience closer to what the user experiences on desktop applications.</p>
+
+                    <a class="btn btn-info">Press Me</a>
+                </div>
+
+                <div ng-if="step == 6">
+                    <p>Some people who haven’t yet signed up to your application will inevitably end up on the log-in page. They likely want to try out your application but can’t find the registration page in a hurry. Perhaps they’ve tried accessing a feature that’s only available to registered users.</p>
+                    <!-- TODO: image from log in page -->
+                </div>
+
+                <div ng-if="step == 9">
+                    <p>While pictures and text are a great way to communicate and teach your users about your app’s features, video can be an even better alternative if you have the resources to produce it. Video has been gaining popularity on the Web in recent years. For Web apps, videos are generally used on the marketing website as a kind of screencast to show off a product’s features; however, this isn’t the only way to use video.</p>
+                    <div  style="width: 90%;">
+                    	<div class="embed-responsive embed-responsive-16by9" style="margin: auto;">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/7OSkB4BCx00"></iframe>
+                    </div>
+                    </div>
+                    
+                </div>
+
+                <div ng-if="step == 10">
+                    <p>One of the most significant elements of a good user interface is visibility of the system’s status. Users must notice immediately what’s going on behind the scenes and whether their actions have actually led to the expected results. To achieve a more sophisticated level of system visibility, Web applications these days use AJAX (of course), which allows users to update portions of a Web page at any time without having to refresh the whole page. AJAX brings the level of responsiveness and interactivity of Web apps much closer to desktop-grade applications.</p>
+                    
+
+                    <input type="text" ng-model="addNewTodoItem.newItem" name="">
+                    <span class="alert-danger" ng-if="addNewTodoItem.newItem == '' && showAddNewItemValidation">Please enter a new item.</span>
+                    <ul>
+                        <li ng-repeat="todoItem in todoList"><!-- ng-class="{ 'newItem': $index == {{todoList.length-1}}, 'oldItem': $index != {{todoList.length-1}} }"-->
+                            {{todoItem.item}}
+                        </li>
+                    </ul>
+                    <button class="btn btn-default" ng-click="addToList();">Add New Item</button>
+
+                </div>
+
+                <div ng-if="step == 11">
+                    <p>This feature can significantly improve the workflow of your users and make it easier for them to get their tasks done.</p>
+                </div>
+
+                <div ng-if="step == 13">
+                    <p>These are little messages that pop out when there is an error or warning or perhaps when an action is completed successfully. Designing these messages correctly is important because you don’t want to confuse or startle your users when there’s nothing to worry about.
+                    </p>
+                    <p>Enter a number between 1 and 10.</p>
+                    <input type="number" name="" ng-model="enteredNumber">
+                    <p class="alert-danger" ng-if="enteredNumber < 1 && enteredNumber != null">Your number is lower than 1!</p>
+                    <p class="alert-danger" ng-if="enteredNumber > 10 && enteredNumber != null">Your number is higher than 10!</p>
+                </div>
+
+                <div ng-if="step == 14">
+                    <p>Tabbed navigation is a menu that looks like each item is a tab on a file folder, with the active tab connected to the body of the page. </p>
+                    <div>
+                        <nav class="tabbedNav">
+                            <button class="btn" ng-class="{'tabbedNavActive': tabbedNavSelected == 1}"><a class="tabbedNavAnchor" ng-click="tabbedNavLink(1)">Tab 1</a></button>
+                            <button class="btn" ng-class="{'tabbedNavActive': tabbedNavSelected == 2}"><a class="tabbedNavAnchor" ng-click="tabbedNavLink(2)">Tab 2</a></button>
+                        </nav>
+                        <div class="tabbedNavContent">
+                            <p ng-if="tabbedNavSelected == 1">tab 1 content</p>
+                            <p ng-if="tabbedNavSelected == 2">tab 2 content</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+
+            <div class="navigationButtons">
+                <button type="button" class="btn btn-default" ng-click="decrementStep()" ng-disabled="step == 1">
+					  <span class="glyphicon glyphicon-backward"></span>
+					</button>
+                <button type="button" class="btn btn-default" ng-click="incrementStep()" ng-disabled="step == 15">
+					  <span class="glyphicon glyphicon-forward"></span>
+					</button>
+            </div>
+            <div class="sidebarAnchors">
+                <ol>
+                    <li ng-repeat="technique in techniques" ng-class="{'activeTechnique': step == $index+1}">
+                        <a ng-class="{'activeTechnique': step == technique.index}" ng-click="selectTechnique(technique.index)">{{technique.name}}</a>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
 </html>

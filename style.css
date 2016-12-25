@@ -1,31 +1,40 @@
 body {
-	width: 70%;
 	margin: auto;
 	font-family: 'Nunito', sans-serif;
 	position: relative;
+	height: 100vh;
+	min-height: 800px;
 	border: 1px solid red;
+}
 
+.container {
+	margin-top: 15px;
+	height: 100%;
+	border: 1px solid blue;
+	height: -moz-calc(100% - 20px);
+    height: -webkit-calc(100% - 20px);
+    height: calc(100% - 20px);
 }
 .content {
-	width: 80%;
-	border: 1px solid blue;
-	float: right;
+	width: 78%;
+	float: left;
 	box-sizing: border-box;
+	height: -moz-calc(100% - 140px);
+    height: -webkit-calc(100% - 140px);
+    height: calc(100% - 140px);
+	margin-top: 50px;
+	background-color: rgba(180, 180, 180, 0.5);
+	border: 1px solid green;
+
 }
 .sidebar {
 	width: 20%;
-	border: 1px solid green;
-	float: left;
+	float: right;
 	box-sizing: border-box;
-
+	margin-top: 10px;
 }
 .technique {
 	padding: 15px;
-}
-.technique1 {
-	background-color: rgba(180, 180, 180, 0.5);
-}
-.technique2 {
 }
 
 .progressBar  {
@@ -33,5 +42,130 @@ body {
 	height: 10px;
 }
 .activeTechnique {
+	color: #111;
+}
+
+.sidebarAnchors {
+	font-size: 12px;
+	color: #aaa;
+	margin-top: 15px;
+}
+
+.sidebarAnchors ol {
+	margin: 0;
+	padding: 0 0 0 15px;
+}
+.sidebarAnchors li {
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+.sidebarAnchors a {
+	color: inherit;
+}
+.sidebarAnchors li:hover {
+	cursor: pointer;
+	color: #888;
+}
+.sidebarAnchors a:hover {
+	cursor: pointer;
+	color: #888;
+}
+
+
+
+.btn-less-important {
+  color: #555;
+  background-color: #ddd;
+  border-color: #ccc;
+}
+.btn-less-important:focus,
+.btn-less-important.focus {
+  color: #555;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.btn-less-important:hover {
+  color: #555;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-less-important:active,
+.btn-less-important.active,
+.open > .dropdown-toggle.btn-less-important {
+  color: #555;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-less-important:active:hover,
+.btn-less-important.active:hover,
+.open > .dropdown-toggle.btn-less-important:hover,
+.btn-less-important:active:focus,
+.btn-less-important.active:focus,
+.open > .dropdown-toggle.btn-less-important:focus,
+.btn-less-important:active.focus,
+.btn-less-important.active.focus,
+.open > .dropdown-toggle.btn-less-important.focus {
+  color: #555;
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+}
+.btn-less-important:active,
+.btn-less-important.active,
+.open > .dropdown-toggle.btn-less-important {
+  background-image: none;
+}
+.btn-less-important.disabled:hover,
+.btn-less-important[disabled]:hover,
+fieldset[disabled] .btn-less-important:hover,
+.btn-less-important.disabled:focus,
+.btn-less-important[disabled]:focus,
+fieldset[disabled] .btn-less-important:focus,
+.btn-less-important.disabled.focus,
+.btn-less-important[disabled].focus,
+fieldset[disabled] .btn-less-important.focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-less-important .badge {
+  color: #fff;
+  background-color: #555;
+}
+
+
+
+.oldItem {
+	color: black;
+}
+.newItem {
 	color: red;
 }
+
+.tabbedNav .btn {
+	border: none;
+	border-radius: 0;
+	margin: 0;
+}
+.tabbedNav button:active {
+	border: none;
+	outline: 0 !important;
+}
+.tabbedNav button:focus {
+	outline:0;
+}
+.tabbedNav a {
+	cursor: pointer;
+	text-transform: none;
+}
+.tabbedNav a:hover {
+	cursor: pointer;
+	text-transform: none;
+	text-decoration:  none;
+}
+.tabbedNav button.tabbedNavActive {
+	background-color: #ff0;
+}
+.tabbedNavContent {
+	background-color: #ff0;
+}
+
+
