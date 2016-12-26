@@ -14,7 +14,7 @@ workshopApp.controller('workshopController', function workshopController($scope)
     	},
     	{
     		index: 3,
-    		name: 'Shadows around modal windows'
+    		name: 'Darken background around modal windows'
     	},
     	{
     		index: 4,

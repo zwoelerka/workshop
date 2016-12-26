@@ -147,6 +147,7 @@ fieldset[disabled] .btn-less-important.focus {
 	outline:0;
 }
 .tabbedNav a {
+	color: #555;
 	cursor: pointer;
 	text-transform: none;
 }
@@ -156,16 +157,16 @@ fieldset[disabled] .btn-less-important.focus {
 	text-decoration:  none;
 }
 .tabbedNav button.tabbedNavActive {
-	background-color: #ff0;
+	background-color: rgba(180,0,0,0.3);
 }
 .tabbedNavContent {
-	background-color: #ff0;
+	background-color: rgba(180,0,0,0.3);
 }
 
 
 @keyframes example {
-    from {color: red; }
-    to {color: inherit;  }
+    from {color: red; background-color: rgba(255,200,200,0.2) }
+    to {color: inherit; background-color: white; }
 }
 
 /* The element to apply the animation to */
@@ -173,6 +174,7 @@ fieldset[disabled] .btn-less-important.focus {
     animation-name: example;
     animation-duration: 4s;
     color: inherit;
+    background-color: white;
 }
 
 
@@ -187,4 +189,8 @@ fieldset[disabled] .btn-less-important.focus {
 
 .tabbedNavContent p {
 	padding: 10px;
+}
+
+#highlightChanges {
+	width: 350px;
 }
